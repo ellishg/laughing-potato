@@ -1,3 +1,3 @@
 [submodule "urban-bassoon"]
 	path = urban-bassoon
-	url = git@github.com:ellishg/urban-bassoon.git
+  url = https://github.com/ellishg/urban-bassoon.git
