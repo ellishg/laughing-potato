@@ -1,6 +1,8 @@
 # laughing-potato (working title)
 A simple website to view recipes.
 
+## [https://laughing-potato.xyz](https://laughing-potato.xyz)
+
 ## Try it yourself
 ```bash
 git clone --recurse-submodules git@github.com:ellishg/laughing-potato.git
