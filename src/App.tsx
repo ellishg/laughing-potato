@@ -6,7 +6,7 @@ const Ingredient: React.FC<{ingredient: any}> = ({ingredient}) => {
   // TODO: Convert units.
   return (
     <div>
-      {ingredient.amount} {ingredient.unit} {ingredient.title}
+      {ingredient.amount} {ingredient.unit} {ingredient.name}
     </div>
   );
 };
@@ -18,7 +18,7 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
     fetch(process.env.PUBLIC_URL + 'recipes/' + recipeName + '.yaml')
       .then(response => response.text())
       .then(data => setRecipe(YAML.parse(data)));
-  }, []);
+  }, [recipeName]);
 
   return (
     recipe ? (
@@ -58,7 +58,7 @@ const Home: React.FC = () => {
   const [recipeList, setRecipeList] = useState<string[]>();
 
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + 'recipes/recipes.yaml')
+    fetch(process.env.PUBLIC_URL + 'recipe-list.yaml')
       .then(response => response.text())
       .then(data => setRecipeList(YAML.parse(data)));
   }, []);
@@ -69,7 +69,7 @@ const Home: React.FC = () => {
       <h1>Recipe List</h1>
       <ul>
         {recipeList.map(recipeName =>
-          <li><Link to={`/${recipeName}`}>{recipeName}</Link></li>
+          <li key={recipeName}><Link to={`/${recipeName}`}>{recipeName}</Link></li>
         )}
       </ul>
     </div>
