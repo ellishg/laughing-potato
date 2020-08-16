@@ -80,7 +80,12 @@ const About: React.FC = () => {
   return (
     <div>
       <h1>About</h1>
-      <p>These are some recipes!</p>
+      <a href="https://github.com/ellishg/laughing-potato">https://github.com/ellishg/laughing-potato</a>
+      <p>
+        This is a simple collection of recipes that are easy to read.
+        If you would like to add your own recipe, please make a pull
+        request at <a href="https://github.com/ellishg/urban-bassoon">https://github.com/ellishg/urban-bassoon</a>.
+      </p>
     </div>
   )
 };
