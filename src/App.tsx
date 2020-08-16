@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import YAML from 'yaml';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import './App.css';
 
 const Ingredient: React.FC<{ingredient: any}> = ({ingredient}) => {
   // TODO: Convert units.
@@ -95,11 +96,11 @@ const App: React.FC = () => {
     <div className="App">
       <header className="App-header">
         <BrowserRouter>
-          <nav>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About</Link></li>
-            </ul>
+          <nav className="navigation">
+            <div className="nav-items">
+              <a href="/">Home</a>
+              <a href="/about">About</a>
+            </div>
           </nav>
           <Switch>
             <Route path="/" exact component={Home} />
