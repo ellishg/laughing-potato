@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import YAML from 'yaml';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
-import './App.css';
+import { Nav } from 'react-bootstrap';
 
 const Ingredient: React.FC<{ingredient: any}> = ({ingredient}) => {
   // TODO: Convert units.
@@ -36,8 +36,8 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
         }
         <h2>Ingredients</h2>
         <ul>
-          {recipe.ingredients.map((ingredient: any) =>
-            <li key={ingredient.title}>
+          {recipe.ingredients.map((ingredient: any, index: number) =>
+            <li key={index}>
               <Ingredient ingredient={ingredient} />
             </li>
           )}
@@ -96,12 +96,14 @@ const App: React.FC = () => {
     <div className="App">
       <header className="App-header">
         <BrowserRouter>
-          <nav className="navigation">
-            <div className="nav-items">
-              <a href="/">Home</a>
-              <a href="/about">About</a>
-            </div>
-          </nav>
+          <Nav variant="tabs" defaultActiveKey="/">
+            <Nav.Item>
+              <Nav.Link as={Link} to='/'>Home</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={Link} to='/about'>About</Nav.Link>
+            </Nav.Item>
+          </Nav>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/about" exact component={About} />
