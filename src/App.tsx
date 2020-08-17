@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import YAML from 'yaml';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
-import { Nav } from 'react-bootstrap';
+import { Card, Spinner, Nav, ListGroup } from 'react-bootstrap';
 
 const Ingredient: React.FC<{ingredient: any}> = ({ingredient}) => {
   // TODO: Convert units.
@@ -24,34 +24,26 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
   return (
     recipe ? (
       <div>
-        <h1>{recipe.title}</h1>
-        <p>{recipe.description}</p>
-        {
-          recipe.bake ?
-            <div>
-              <div>Bake time: {recipe.bake.time}</div>
-              <div>Bake temperature: {recipe.bake.temperature}</div>
-            </div>
-            : null
-        }
-        <h2>Ingredients</h2>
-        <ul>
+        <Card.Title as="h1">{recipe.title}</Card.Title>
+        <Card.Text>{recipe.description}</Card.Text>
+        <Card.Header as="h2">Ingredints</Card.Header>
+        {/* TODO: Set max width. */}
+        <ListGroup>
           {recipe.ingredients.map((ingredient: any, index: number) =>
-            <li key={index}>
+            <ListGroup.Item key={index}>
               <Ingredient ingredient={ingredient} />
-            </li>
-          )}
-        </ul>
-        <h3>Directions</h3>
+            </ListGroup.Item>
+            )}
+        </ListGroup>
+        <Card.Header as="h2">Directions</Card.Header>
+        {/* TODO: Set max width. */}
         <ol>
-          {recipe.directions.map((step: any, index: number) =>
-            <li key={index}>
-              {step}
-            </li>
+        {recipe.directions.map((step: any, index: number) =>
+          <li key={index}>{step}</li>
           )}
         </ol>
       </div>
-    ) : <h1>Loading...</h1>
+    ) : <Loading />
   );
 };
 
@@ -67,36 +59,47 @@ const Home: React.FC = () => {
   // TODO: Handle different categories.
   return recipeList ? (
     <div>
-      <h1>Recipe List</h1>
-      <ul>
-        {recipeList.map(recipeName =>
-          <li key={recipeName}><Link to={`/${recipeName}`}>{recipeName}</Link></li>
+      <Card.Title>Recipe List</Card.Title>
+      <ListGroup>
+        {recipeList.map((recipeName: any, index: number) =>
+          <ListGroup.Item key={index}>
+            <Link to={`/${recipeName}`}>{recipeName}</Link>
+          </ListGroup.Item>
         )}
-      </ul>
+      </ListGroup>
     </div>
-  ) : <h1>Loading...</h1>;
+  ) : <Loading />;
 };
 
 const About: React.FC = () => {
   return (
     <div>
-      <h1>About</h1>
-      <a href="https://github.com/ellishg/laughing-potato">https://github.com/ellishg/laughing-potato</a>
-      <p>
-        This is a simple collection of recipes that are easy to read.
-        If you would like to add your own recipe, please make a pull
-        request at <a href="https://github.com/ellishg/urban-bassoon">https://github.com/ellishg/urban-bassoon</a>.
-      </p>
+      <Card.Title>About</Card.Title>
+      <Card.Link href="https://github.com/ellishg/laughing-potato">
+        github.com/ellishg/laughing-potato
+      </Card.Link>
+      <Card.Text>
+        This is a simple collection of recipes that are easy to read. If you would like to add your own recipe, please make a pull request at <a href="https://github.com/ellishg/urban-bassoon">github.com/ellishg/urban-bassoon</a>.
+      </Card.Text>
     </div>
-  )
+  );
 };
 
+const Loading: React.FC = () => {
+  // TODO: Center spinner.
+  return (
+    <Spinner animation="border" role="status">
+      <span className="sr-only">Loading...</span>
+    </Spinner>
+  );
+}
+
 const App: React.FC = () => {
-   return (
-    <div className="App">
-      <header className="App-header">
-        <BrowserRouter>
-          <Nav variant="tabs" defaultActiveKey="/">
+  return (
+    <BrowserRouter>
+      <Card>
+        <Card.Header>
+          <Nav variant='tabs' defaultActiveKey="/">
             <Nav.Item>
               <Nav.Link as={Link} to='/'>Home</Nav.Link>
             </Nav.Item>
@@ -104,16 +107,18 @@ const App: React.FC = () => {
               <Nav.Link as={Link} to='/about'>About</Nav.Link>
             </Nav.Item>
           </Nav>
+        </Card.Header>
+        <Card.Body>
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/about" exact component={About} />
-            <Route path="/:recipeName" exact component={(props: any) =>
+            <Route path='/' exact component={Home} />
+            <Route path='/about' exact component={About} />
+            <Route path='/:recipeName' exact component={(props: any) =>
               <Recipe recipeName={props.match.params.recipeName} />
             } />
           </Switch>
-        </BrowserRouter>
-      </header>
-    </div>
+        </Card.Body>
+      </Card>
+    </BrowserRouter>
   );
 }
 
