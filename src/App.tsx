@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import YAML from 'yaml';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
-import { Alert, Card, Spinner, Nav, ListGroup } from 'react-bootstrap';
+import { Alert, Card, Spinner, Nav, ListGroup, ToggleButton, ButtonGroup} from 'react-bootstrap';
+
+type Ingredient = {'name': string, 'amount': number, 'unit': string};
+type Recipe = {'title': string, 'description': string, 'ingredients': Ingredient[], 'directions': string[]};
 
 const isValidIngredient = (ingredient: any) => (
   ('name' in ingredient)
@@ -17,17 +20,56 @@ const isValidRecipe = (recipe: any) => (
   && ('directions' in recipe)
 );
 
-const Ingredient: React.FC<{ingredient: any}> = ({ingredient}) => {
-  // TODO: Convert units.
+const Ingredient: React.FC<{ingredient: Ingredient, useMetricUnits: boolean}> = ({ingredient, useMetricUnits}) => {
+
+  const conversions: any = {
+    'flour': {'cups': 1, 'grams': 136},
+    'butter': {'cups': 1, 'grams': 227},
+    'white sugar': {'cups': 1, 'grams': 201},
+    'sugar': {'cups': 1, 'grams': 201},
+  };
+
+  var amount = ingredient.amount;
+  var unit = ingredient.unit;
+  if (ingredient.name in conversions) {
+    const {cups, grams} = conversions[ingredient.name];
+    if (useMetricUnits && unit === 'cups') {
+      amount = amount * grams / cups;
+      unit = 'grams';
+    } else if (!useMetricUnits && unit === 'grams') {
+      amount = amount * cups / grams;
+      unit = 'cups';
+    }
+  }
+
+  const toNearestFraction = (x: number) => {
+    const epsilon = 0.001;
+    const whole = Math.trunc(x + epsilon);
+    const part = x - whole;
+    const fraction = (part < 1/8/2) ? null
+      : (part < 1/8 + (1/4-1/8)/2) ? '1/8'
+      : (part < 1/4 + (1/3-1/4)/2) ? '1/4'
+      : (part < 1/3 + (3/8-1/3)/2) ? '1/3'
+      : (part < 3/8 + (1/2-3/8)/2) ? '3/8'
+      : (part < 1/2 + (5/8-1/2)/2) ? '1/2'
+      : (part < 5/8 + (2/3-5/8)/2) ? '5/8'
+      : (part < 2/3 + (3/4-2/3)/2) ? '2/3'
+      : (part < 3/4 + (7/8-3/4)/2) ? '3/4'
+      : '7/8';
+    return whole === 0 ? (fraction ? fraction : '0')
+      : `${whole}` + (fraction ? ` ${fraction}` : '');
+  };
+
   return (
     <div>
-      {ingredient.amount} {ingredient.unit} {ingredient.name}
+      {toNearestFraction(amount)} {unit} {ingredient.name}
     </div>
   );
 };
 
 const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
-  const [recipe, setRecipe] = useState<any>();
+  const [recipe, setRecipe] = useState<Recipe>();
+  const [useMetricUnits, setUseMetricUnits] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>();
 
   useEffect(() => {
@@ -49,15 +91,31 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
       <Alert variant='danger'>Could not find recipe for "{recipeName}"</Alert>
     ) : recipe ? (
       <div>
-        <Card.Title as="h1">{recipe.title}</Card.Title>
+        <Card.Title as="h1">
+          {recipe.title}
+          <ButtonGroup toggle>
+            <ToggleButton
+              type='radio' value='true'
+              checked={useMetricUnits} onChange={() => setUseMetricUnits(true)}
+            >
+              Metric
+            </ToggleButton>
+            <ToggleButton
+              type='radio' value='true'
+              checked={!useMetricUnits} onChange={() => setUseMetricUnits(false)}
+            >
+              Imperial
+            </ToggleButton>
+          </ButtonGroup>
+        </Card.Title>
         <Card.Text>{recipe.description}</Card.Text>
         <Card.Header as="h2">Ingredients</Card.Header>
         {/* TODO: Set max width. */}
         <Card.Body>
           <ListGroup>
-            {recipe.ingredients.map((ingredient: any, index: number) =>
+            {recipe.ingredients.map((ingredient: Ingredient, index: number) =>
               <ListGroup.Item key={index}>
-                <Ingredient ingredient={ingredient} />
+                <Ingredient ingredient={ingredient} useMetricUnits={useMetricUnits} />
               </ListGroup.Item>
               )}
           </ListGroup>
@@ -66,7 +124,7 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
         {/* TODO: Set max width. */}
         <Card.Body>
           <ol>
-          {recipe.directions.map((step: any, index: number) =>
+          {recipe.directions.map((step: string, index: number) =>
             <li key={index}>{step}</li>
             )}
           </ol>
@@ -90,7 +148,7 @@ const Home: React.FC = () => {
     <div>
       <Card.Title>Recipe List</Card.Title>
       <ListGroup>
-        {recipeList.map((recipeName: any, index: number) =>
+        {recipeList.map((recipeName: string, index: number) =>
           <ListGroup.Item key={index}>
             <Link to={`/${recipeName}`}>{recipeName}</Link>
           </ListGroup.Item>
