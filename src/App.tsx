@@ -51,22 +51,26 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
       <div>
         <Card.Title as="h1">{recipe.title}</Card.Title>
         <Card.Text>{recipe.description}</Card.Text>
-        <Card.Header as="h2">Ingredints</Card.Header>
+        <Card.Header as="h2">Ingredients</Card.Header>
         {/* TODO: Set max width. */}
-        <ListGroup>
-          {recipe.ingredients.map((ingredient: any, index: number) =>
-            <ListGroup.Item key={index}>
-              <Ingredient ingredient={ingredient} />
-            </ListGroup.Item>
-            )}
-        </ListGroup>
+        <Card.Body>
+          <ListGroup>
+            {recipe.ingredients.map((ingredient: any, index: number) =>
+              <ListGroup.Item key={index}>
+                <Ingredient ingredient={ingredient} />
+              </ListGroup.Item>
+              )}
+          </ListGroup>
+        </Card.Body>
         <Card.Header as="h2">Directions</Card.Header>
         {/* TODO: Set max width. */}
-        <ol>
-        {recipe.directions.map((step: any, index: number) =>
-          <li key={index}>{step}</li>
-          )}
-        </ol>
+        <Card.Body>
+          <ol>
+          {recipe.directions.map((step: any, index: number) =>
+            <li key={index}>{step}</li>
+            )}
+          </ol>
+        </Card.Body>
       </div>
     ) : <Loading />
   );
