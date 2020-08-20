@@ -21,11 +21,11 @@ const isValidRecipe = (recipe: any) => (
 
 const Ingredient: React.FC<{ingredient: Ingredient, unitConversions: any, useMetricUnits: boolean}> = ({ingredient, unitConversions, useMetricUnits}) => {
 
-  const toNearestFraction = (x: number) => {
+  const toNearestFraction: (x: number) => string = (x) => {
     const epsilon = 0.001;
     const whole = Math.trunc(x + epsilon);
     const part = x - whole;
-    const fraction = (part < 1/8/2) ? null
+    const fraction = (part < (1/8)/2) ? null
       : (part < 1/8 + (1/4-1/8)/2) ? '1/8'
       : (part < 1/4 + (1/3-1/4)/2) ? '1/4'
       : (part < 1/3 + (3/8-1/3)/2) ? '1/3'
@@ -38,6 +38,13 @@ const Ingredient: React.FC<{ingredient: Ingredient, unitConversions: any, useMet
     return whole === 0 ? (fraction ? fraction : '0')
       : `${whole}` + (fraction ? ` ${fraction}` : '');
   };
+
+  const unitToAbbreviation: Map<string, string> = new Map([
+    ['grams', 'g'],
+    ['tablespoons', 'tbsp.'],
+    ['teaspoons', 'tsp.'],
+    ['ounces', 'oz'],
+  ]);
 
   if (ingredient.unit === undefined) {
     return (
@@ -60,7 +67,7 @@ const Ingredient: React.FC<{ingredient: Ingredient, unitConversions: any, useMet
 
   return (
     <div>
-      {toNearestFraction(amount)} {unit} {ingredient.name}
+      {toNearestFraction(amount)} {unitToAbbreviation.get(unit) || unit} {ingredient.name}
     </div>
   );
 };
