@@ -80,7 +80,7 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
   }, [useMetricUnits]);
 
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + 'recipes/' + recipeName + '.yaml')
+    fetch(process.env.PUBLIC_URL + '../recipes/' + recipeName + '.yaml')
       .then(response => response.text())
       .then(data => {
         const recipe = YAML.parse(data);
@@ -91,7 +91,7 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
         }
       })
       .catch(error => setErrorMessage(error.message));
-    fetch(process.env.PUBLIC_URL + 'unit-conversions.yaml')
+    fetch(process.env.PUBLIC_URL + '../unit-conversions.yaml')
       .then(response => response.text())
       .then(data => setUnitConversios(YAML.parse(data)));
   }, [recipeName]);
@@ -160,7 +160,7 @@ const Home: React.FC = () => {
       <ListGroup>
         {recipeList.map((recipeName: string, index: number) =>
           <ListGroup.Item key={index}>
-            <Link to={`/${recipeName}`}>{recipeName}</Link>
+            <Link to={`/recipe/${recipeName}`}>{recipeName}</Link>
           </ListGroup.Item>
         )}
       </ListGroup>
@@ -215,7 +215,7 @@ const App: React.FC = () => {
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/about' exact component={About} />
-            <Route path='/:recipeName' exact component={(props: any) =>
+            <Route path='/recipe/:recipeName' exact component={(props: any) =>
               <Recipe recipeName={props.match.params.recipeName} />
             } />
             <Route component={BadURL} />
