@@ -69,8 +69,16 @@ const Ingredient: React.FC<{ingredient: Ingredient, useMetricUnits: boolean}> = 
 
 const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
   const [recipe, setRecipe] = useState<Recipe>();
-  const [useMetricUnits, setUseMetricUnits] = useState<boolean>(false);
+  const [useMetricUnits, setUseMetricUnits] = useState<boolean>(() =>
+    localStorage.getItem('useMetricUnit') === true.toString()
+  );
   const [errorMessage, setErrorMessage] = useState<string>();
+
+  useEffect(() => {
+    if (!(localStorage.getItem('useMetricUnit') === useMetricUnits.toString())) {
+      localStorage.setItem('useMetricUnit', useMetricUnits.toString());
+    }
+  }, [useMetricUnits]);
 
   useEffect(() => {
     fetch(process.env.PUBLIC_URL + 'recipes/' + recipeName + '.yaml')
@@ -95,13 +103,13 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
           {recipe.title}
           <ButtonGroup toggle>
             <ToggleButton
-              type='radio' value='true'
+              type='radio' value={useMetricUnits.toString()}
               checked={useMetricUnits} onChange={() => setUseMetricUnits(true)}
             >
               Metric
             </ToggleButton>
             <ToggleButton
-              type='radio' value='true'
+              type='radio' value={(!useMetricUnits).toString()}
               checked={!useMetricUnits} onChange={() => setUseMetricUnits(false)}
             >
               Imperial
