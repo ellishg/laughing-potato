@@ -20,19 +20,11 @@ const isValidRecipe = (recipe: any) => (
   && ('directions' in recipe)
 );
 
-const Ingredient: React.FC<{ingredient: Ingredient, useMetricUnits: boolean}> = ({ingredient, useMetricUnits}) => {
-
-  const conversions: any = {
-    'flour': {'cups': 1, 'grams': 136},
-    'butter': {'cups': 1, 'grams': 227},
-    'white sugar': {'cups': 1, 'grams': 201},
-    'sugar': {'cups': 1, 'grams': 201},
-  };
-
+const Ingredient: React.FC<{ingredient: Ingredient, unitConversions: any, useMetricUnits: boolean}> = ({ingredient, unitConversions, useMetricUnits}) => {
   var amount = ingredient.amount;
   var unit = ingredient.unit;
-  if (ingredient.name in conversions) {
-    const {cups, grams} = conversions[ingredient.name];
+  if (ingredient.name in unitConversions) {
+    const {cups, grams} = unitConversions[ingredient.name];
     if (useMetricUnits && unit === 'cups') {
       amount = amount * grams / cups;
       unit = 'grams';
@@ -69,6 +61,7 @@ const Ingredient: React.FC<{ingredient: Ingredient, useMetricUnits: boolean}> = 
 
 const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
   const [recipe, setRecipe] = useState<Recipe>();
+  const [unitConversions, setUnitConversios] = useState<any>();
   const [useMetricUnits, setUseMetricUnits] = useState<boolean>(() =>
     localStorage.getItem('useMetricUnit') === true.toString()
   );
@@ -92,12 +85,15 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
         }
       })
       .catch(error => setErrorMessage(error.message));
+    fetch(process.env.PUBLIC_URL + 'unit-conversions.yaml')
+      .then(response => response.text())
+      .then(data => setUnitConversios(YAML.parse(data)));
   }, [recipeName]);
 
   return (
     errorMessage ? (
       <Alert variant='danger'>Could not find recipe for "{recipeName}"</Alert>
-    ) : recipe ? (
+    ) : recipe && unitConversions ? (
       <div>
         <Card.Title as="h1">
           {recipe.title}
@@ -123,7 +119,7 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
           <ListGroup>
             {recipe.ingredients.map((ingredient: Ingredient, index: number) =>
               <ListGroup.Item key={index}>
-                <Ingredient ingredient={ingredient} useMetricUnits={useMetricUnits} />
+                <Ingredient ingredient={ingredient} unitConversions={unitConversions} useMetricUnits={useMetricUnits} />
               </ListGroup.Item>
               )}
           </ListGroup>
