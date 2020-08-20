@@ -9,7 +9,6 @@ type Recipe = {'title': string, 'description': string, 'ingredients': Ingredient
 const isValidIngredient = (ingredient: any) => (
   ('name' in ingredient)
   && ('amount' in ingredient)
-  && ('unit' in ingredient)
 );
 
 const isValidRecipe = (recipe: any) => (
@@ -21,18 +20,6 @@ const isValidRecipe = (recipe: any) => (
 );
 
 const Ingredient: React.FC<{ingredient: Ingredient, unitConversions: any, useMetricUnits: boolean}> = ({ingredient, unitConversions, useMetricUnits}) => {
-  var amount = ingredient.amount;
-  var unit = ingredient.unit;
-  if (ingredient.name in unitConversions) {
-    const {cups, grams} = unitConversions[ingredient.name];
-    if (useMetricUnits && unit === 'cups') {
-      amount = amount * grams / cups;
-      unit = 'grams';
-    } else if (!useMetricUnits && unit === 'grams') {
-      amount = amount * cups / grams;
-      unit = 'cups';
-    }
-  }
 
   const toNearestFraction = (x: number) => {
     const epsilon = 0.001;
@@ -51,6 +38,25 @@ const Ingredient: React.FC<{ingredient: Ingredient, unitConversions: any, useMet
     return whole === 0 ? (fraction ? fraction : '0')
       : `${whole}` + (fraction ? ` ${fraction}` : '');
   };
+
+  if (ingredient.unit === undefined) {
+    return (
+      <div>{ingredient.amount} {ingredient.name}</div>
+    )
+  }
+
+  var amount = ingredient.amount;
+  var unit = ingredient.unit;
+  if (ingredient.name in unitConversions) {
+    const {cups, grams} = unitConversions[ingredient.name];
+    if (useMetricUnits && unit === 'cups') {
+      amount = amount * grams / cups;
+      unit = 'grams';
+    } else if (!useMetricUnits && unit === 'grams') {
+      amount = amount * cups / grams;
+      unit = 'cups';
+    }
+  }
 
   return (
     <div>
