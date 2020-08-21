@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
+import { Alert, ButtonGroup, Card, ListGroup, Nav, Spinner, ToggleButton } from 'react-bootstrap';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import YAML from 'yaml';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
-import { Alert, Card, Spinner, Nav, ListGroup, ToggleButton, ButtonGroup} from 'react-bootstrap';
 import { IngredientType } from './types/IngredientType';
 import { RecipeType } from './types/RecipeType';
 
