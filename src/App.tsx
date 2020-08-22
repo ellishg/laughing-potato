@@ -32,7 +32,7 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
   }, [useMetricUnits]);
 
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + '../recipes/' + recipeName + '.yaml')
+    fetch(process.env.PUBLIC_URL + '/recipes/' + recipeName + '.yaml')
       .then(response => response.text())
       .then(data => {
         const recipe = RecipeType.get(YAML.parse(data));
@@ -43,7 +43,7 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
         }
       })
       .catch(error => setErrorMessage(error.message));
-    fetch(process.env.PUBLIC_URL + '../unit-conversions.yaml')
+    fetch(process.env.PUBLIC_URL + '/unit-conversions.yaml')
       .then(response => response.text())
       .then(data => setUnitConversions(YAML.parse(data)));
   }, [recipeName]);
@@ -102,7 +102,7 @@ const Home: React.FC = () => {
   const [recipeList, setRecipeList] = useState<string[]>();
 
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + 'recipe-list.yaml')
+    fetch(process.env.PUBLIC_URL + '/recipe-list.yaml')
       .then(response => response.text())
       .then(data => setRecipeList(YAML.parse(data)));
   }, []);
@@ -114,7 +114,9 @@ const Home: React.FC = () => {
       <ListGroup>
         {recipeList.map((recipeName: string, index: number) =>
           <ListGroup.Item key={index}>
-            <Link to={`/recipe/${recipeName}`}>{recipeName}</Link>
+            <Link to={process.env.PUBLIC_URL + '/recipe/' + recipeName}>
+              {recipeName}
+            </Link>
           </ListGroup.Item>
         )}
       </ListGroup>
@@ -161,18 +163,18 @@ const App: React.FC = () => {
         <Card.Header>
           <Nav variant='tabs' defaultActiveKey="/">
             <Nav.Item>
-              <Nav.Link as={Link} to='/'>Home</Nav.Link>
+              <Nav.Link as={Link} to={process.env.PUBLIC_URL + '/'}>Home</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link as={Link} to='/about'>About</Nav.Link>
+              <Nav.Link as={Link} to={process.env.PUBLIC_URL + '/about'}>About</Nav.Link>
             </Nav.Item>
           </Nav>
         </Card.Header>
         <Card.Body>
           <Switch>
-            <Route path='/' exact component={Home} />
-            <Route path='/about' exact component={About} />
-            <Route path='/recipe/:recipeName' exact component={(props: any) =>
+            <Route path={process.env.PUBLIC_URL + '/'} exact component={Home} />
+            <Route path={process.env.PUBLIC_URL + '/about'} exact component={About} />
+            <Route path={process.env.PUBLIC_URL + '/recipe/:recipeName'} exact component={(props: any) =>
               <Recipe recipeName={props.match.params.recipeName} />
             } />
             <Route component={BadURL} />
