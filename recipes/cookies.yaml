@@ -1,0 +1,55 @@
+%YAML 1.2
+---
+
+title: Cookies
+
+# TODO: Write a better description
+description:
+  Makes a lot of yummy cookies.
+
+ingredients:
+  - name: butter
+    amount: 227
+    unit: grams
+
+  - name: white sugar
+    amount: 202
+    unit: grams
+
+  - name: brown sugar
+    amount: 145
+    unit: grams
+
+  - name: eggs
+    amount: 2
+
+  - name: vanilla
+    amount: 2
+    unit: teaspoons
+
+  - name: salt
+    amount: 0.5
+    unit: teaspoons
+
+  - name: baking soda
+    amount: 1
+    unit: teaspoons
+
+  - name: hot water
+    amount: 2
+    unit: tablespoons
+
+  - name: flour
+    amount: 375
+    unit: grams
+
+  - name: chocolate chips
+    amount: 1
+    unit: bag
+
+directions:
+  - Combine softened butter, white sugar, brown sugar, eggs, vanilla, and salt
+    into a large bowl until smooth.
+  - Mix in baking soda, hot water, and flour.
+  - Mix in the chocolate chips.
+  - Roll into balls and bake at 350 °F for 10 minutes.
