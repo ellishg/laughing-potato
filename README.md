@@ -1,7 +1,7 @@
 # laughing-potato (working title)
+## [https://ellishg.github.io/laughing-potato/](https://ellishg.github.io/laughing-potato/)
 A simple website to view recipes.
 
-## [https://laughing-potato.xyz](https://laughing-potato.xyz)
 
 ## Try it yourself
 ```bash
@@ -37,6 +37,10 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn deploy`
+
+Builds and deploys `build` folder to the `gh-pages` branch.
 
 ### `yarn eject`
 
