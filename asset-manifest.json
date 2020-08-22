@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.js": "/ellishg.github.io/laughing-potato/static/js/main.ea0336a9.chunk.js",
-    "main.js.map": "/ellishg.github.io/laughing-potato/static/js/main.ea0336a9.chunk.js.map",
-    "runtime-main.js": "/ellishg.github.io/laughing-potato/static/js/runtime-main.3532b58d.js",
-    "runtime-main.js.map": "/ellishg.github.io/laughing-potato/static/js/runtime-main.3532b58d.js.map",
-    "static/css/2.11829350.chunk.css": "/ellishg.github.io/laughing-potato/static/css/2.11829350.chunk.css",
-    "static/js/2.e0a4bbea.chunk.js": "/ellishg.github.io/laughing-potato/static/js/2.e0a4bbea.chunk.js",
-    "static/js/2.e0a4bbea.chunk.js.map": "/ellishg.github.io/laughing-potato/static/js/2.e0a4bbea.chunk.js.map",
-    "index.html": "/ellishg.github.io/laughing-potato/index.html",
-    "precache-manifest.57bf4ad8bc268fcb0ae649a6544b43b0.js": "/ellishg.github.io/laughing-potato/precache-manifest.57bf4ad8bc268fcb0ae649a6544b43b0.js",
-    "service-worker.js": "/ellishg.github.io/laughing-potato/service-worker.js",
-    "static/css/2.11829350.chunk.css.map": "/ellishg.github.io/laughing-potato/static/css/2.11829350.chunk.css.map",
-    "static/js/2.e0a4bbea.chunk.js.LICENSE.txt": "/ellishg.github.io/laughing-potato/static/js/2.e0a4bbea.chunk.js.LICENSE.txt"
+    "main.js": "/static/js/main.989fda56.chunk.js",
+    "main.js.map": "/static/js/main.989fda56.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ccdc9b21.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ccdc9b21.js.map",
+    "static/css/2.11829350.chunk.css": "/static/css/2.11829350.chunk.css",
+    "static/js/2.e06a8ea7.chunk.js": "/static/js/2.e06a8ea7.chunk.js",
+    "static/js/2.e06a8ea7.chunk.js.map": "/static/js/2.e06a8ea7.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.1a11d559160bb6b72eead181579f10fc.js": "/precache-manifest.1a11d559160bb6b72eead181579f10fc.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.11829350.chunk.css.map": "/static/css/2.11829350.chunk.css.map",
+    "static/js/2.e06a8ea7.chunk.js.LICENSE.txt": "/static/js/2.e06a8ea7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.3532b58d.js",
+    "static/js/runtime-main.ccdc9b21.js",
     "static/css/2.11829350.chunk.css",
-    "static/js/2.e0a4bbea.chunk.js",
-    "static/js/main.ea0336a9.chunk.js"
+    "static/js/2.e06a8ea7.chunk.js",
+    "static/js/main.989fda56.chunk.js"
   ]
 }
