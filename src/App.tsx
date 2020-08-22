@@ -132,6 +132,9 @@ const About: React.FC = () => {
       <Card.Text>
         This is a simple collection of recipes that are easy to read. If you would like to add your own recipe, please make a pull request at <a href="https://github.com/ellishg/urban-bassoon">github.com/ellishg/urban-bassoon</a>.
       </Card.Text>
+      <Card.Text>
+        Thanks!
+      </Card.Text>
     </div>
   );
 };
