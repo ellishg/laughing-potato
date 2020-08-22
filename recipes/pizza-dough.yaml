@@ -1,0 +1,58 @@
+%YAML 1.2
+---
+
+title: Pizza Dough
+
+description:
+  Makes two 9 inch deep dish pizza crusts.
+
+bake:
+  time: 45 minutes
+  temperature: 425 °F
+
+# TODO: Convert to grams.
+ingredients:
+  - name: flour
+    amount: 3.25
+    unit: cups
+
+  - name: cornmeal
+    amount: 0.5
+    unit: cups
+
+  - name: salt
+    amount: 1.25
+    unit: teaspoons
+
+  - name: yeast
+    amount: 2.25
+    unit: teaspoons
+
+  - name: warm water
+    amount: 1.25
+    unit: cups
+
+  - name: butter
+    amount: 0.5
+    unit: cups
+
+  - name: olive oil
+    amount: 1
+    unit: teaspoons
+
+directions:
+  - Combine flour, cornmeal, salt, and sugar in a large bowl.
+  - Add yeast to warm water and add to mixture with with 1/4 cup of melted
+    butter.
+  - Kneed until dough is soft and supple (4-5 minutes).
+  - Make dough into a ball and coat with olive oil.
+  - Let rise until doubled in size (1-2 hours).
+  - Roll dough into a 15x12 inch rectangle.
+  - Spread 1/4 cup of softened butter onto the rectangle and roll into a
+    short log.
+  - Cut dough in half to form two balls and let it rise in greased bowl for 1
+    hour.
+  - Roll dough into 12 inch circle and place into 9x2 inch pan.
+  - Assemble pizza.
+  - Bake uncovered for 30 minutes, then covered with aluminum foid for 15
+    minutes at 425 degrees.

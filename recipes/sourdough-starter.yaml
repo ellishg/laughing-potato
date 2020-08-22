@@ -1,0 +1,27 @@
+%YAML 1.2
+---
+
+title: Sourdough Starter
+
+description:
+  Feeding your sourdough starter.
+
+ingredients:
+  - name: water
+    amount: 100
+    unit: grams
+
+  - name: starter
+    amount: 30
+    unit: grams
+
+  - name: flour
+    amount: 100
+    unit: grams
+
+directions:
+  - Add 100 grams of warm water to a small bowl.
+  - Mix 30 grams of starter.
+  - Add 100 grams of flour.
+  - Mix dough until smooth.
+  - Keep in the fridge for up to about 1 week.
