@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
-export const About: React.FC = () => {
+const About: React.FC = () => {
   return (
     <div>
       <Card.Title>About</Card.Title>
@@ -14,3 +14,5 @@ export const About: React.FC = () => {
     </div>
   );
 };
+
+export default About

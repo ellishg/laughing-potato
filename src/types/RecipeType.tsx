@@ -1,6 +1,6 @@
-import { IngredientType } from './IngredientType';
+import IngredientType from './IngredientType';
 
-export class RecipeType {
+class RecipeType {
     readonly title: string;
     readonly description: string;
     readonly ingredients: IngredientType[];
@@ -32,3 +32,5 @@ export class RecipeType {
         );
     }
 }
+
+export default RecipeType;

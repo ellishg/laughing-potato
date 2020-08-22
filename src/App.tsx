@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Card, ListGroup, Nav } from 'react-bootstrap';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import YAML from 'yaml';
-import { About } from './About';
-import { Loading } from './Loading';
-import { Recipe } from './Recipe';
+import About from './About';
+import Loading from './Loading';
+import Recipe from './Recipe';
 
 const Home: React.FC = () => {
   const [recipeList, setRecipeList] = useState<string[]>();

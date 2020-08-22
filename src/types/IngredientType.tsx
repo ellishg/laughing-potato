@@ -1,4 +1,4 @@
-export class IngredientType {
+class IngredientType {
   readonly name: string;
   private amount: number;
   private unit?: string;
@@ -68,3 +68,5 @@ export class IngredientType {
       : `${whole}` + (fraction ? ` ${fraction}` : '');
   };
 }
+
+export default IngredientType;

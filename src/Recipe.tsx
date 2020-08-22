@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, ButtonGroup, Card, ListGroup, ToggleButton } from 'react-bootstrap';
 import YAML from 'yaml';
-import { Loading } from './Loading';
-import { IngredientType } from './types/IngredientType';
-import { RecipeType } from './types/RecipeType';
+import Loading from './Loading';
+import IngredientType from './types/IngredientType';
+import RecipeType from './types/RecipeType';
 
-export const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
+const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
   const [recipe, setRecipe] = useState<RecipeType>();
   const [unitConversions, setUnitConversions] = useState<any>();
   const [useMetricUnits, setUseMetricUnits] = useState<boolean>(() =>
@@ -83,3 +83,5 @@ export const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
     ) : <Loading />
   );
 };
+
+export default Recipe;

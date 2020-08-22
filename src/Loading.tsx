@@ -1,7 +1,7 @@
 import React from 'react';
 import { Spinner } from 'react-bootstrap';
 
-export const Loading: React.FC = () => {
+const Loading: React.FC = () => {
   // TODO: Center spinner.
   return (
     <Spinner animation="border" role="status">
@@ -9,3 +9,5 @@ export const Loading: React.FC = () => {
     </Spinner>
   );
 };
+
+export default Loading;
