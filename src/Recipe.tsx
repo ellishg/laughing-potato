@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, ButtonGroup, Card, ListGroup, ToggleButton } from 'react-bootstrap';
+import { Alert, ButtonGroup, Card, Image, ListGroup, ToggleButton } from 'react-bootstrap';
 import YAML from 'yaml';
 import Loading from './Loading';
 import IngredientType from './types/IngredientType';
@@ -59,6 +59,16 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
           </ButtonGroup>
         </Card.Title>
         <Card.Text>{recipe.description}</Card.Text>
+
+        {/* TODO: Use better style, click to enlarge. */}
+        {recipe.images.map((path: string, index: number) =>
+          <Image
+            src={process.env.PUBLIC_URL + '/' + path}
+            rounded style={{ width: '8rem' }}
+            key={index}
+          />
+        )}
+
         <Card.Header as="h2">Ingredients</Card.Header>
         {/* TODO: Set max width. */}
         <Card.Body>
