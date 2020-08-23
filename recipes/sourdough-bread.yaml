@@ -6,6 +6,9 @@ title: Sourdough Bread
 description:
   Makes 1 loaf of sourdough bread.
 
+images:
+  - images/sourdough-bread.jpg
+
 ingredients:
   - name: water
     amount: 350
