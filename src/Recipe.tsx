@@ -20,7 +20,7 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
   }, [useMetricUnits]);
 
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + '/recipes/' + recipeName + '.yaml')
+    fetch(process.env.PUBLIC_URL + '/recipes/' + recipeName)
       .then(response => response.text())
       .then(data => {
         const recipe = RecipeType.get(YAML.parse(data));

@@ -7,7 +7,7 @@ import Loading from './Loading';
 import Recipe from './Recipe';
 
 const Home: React.FC = () => {
-  const [recipeList, setRecipeList] = useState<string[]>();
+  const [recipeList, setRecipeList] = useState<any[]>();
 
   useEffect(() => {
     fetch(process.env.PUBLIC_URL + '/recipe-list.yaml')
@@ -16,14 +16,15 @@ const Home: React.FC = () => {
   }, []);
 
   // TODO: Handle different categories.
+  // TODO: Add search bar to filter by tags using a fuzzy search.
   return recipeList ? (
     <div>
       <Card.Title>Recipe List</Card.Title>
       <ListGroup>
-        {recipeList.map((recipeName: string, index: number) =>
+        {recipeList.map((recipeItem: any, index: number) =>
           <ListGroup.Item key={index}>
-            <Link to={process.env.PUBLIC_URL + '/recipe/' + recipeName}>
-              {recipeName}
+            <Link to={process.env.PUBLIC_URL + '/recipe/' + recipeItem.filename}>
+              {recipeItem.title}
             </Link>
           </ListGroup.Item>
         )}
