@@ -1,5 +1,5 @@
 # laughing-potato (working title)
-## [https://ellishg.github.io/laughing-potato/](https://ellishg.github.io/laughing-potato/)
+## [ellishg.github.io/laughing-potato](https://ellishg.github.io/laughing-potato)
 A simple website to view recipes.
 
 
