@@ -1,6 +1,3 @@
-%YAML 1.2
----
-
 title: Pizza Sauce
 
 description:
@@ -43,3 +40,7 @@ directions:
     heat until brown (5 minutes).
   - Add minced garlic, crushed tomatoes, and sugar.
   - Turn to low heat and simmer for 30 minutes.
+
+tags:
+  - dinner
+  - pizza

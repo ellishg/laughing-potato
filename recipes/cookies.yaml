@@ -1,6 +1,3 @@
-%YAML 1.2
----
-
 title: Cookies
 
 # TODO: Write a better description
@@ -53,3 +50,6 @@ directions:
   - Mix in baking soda, hot water, and flour.
   - Mix in the chocolate chips.
   - Roll into balls and bake at 350 °F for 10 minutes.
+
+tags:
+  - dessert

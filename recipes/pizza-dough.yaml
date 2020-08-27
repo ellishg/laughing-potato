@@ -1,6 +1,3 @@
-%YAML 1.2
----
-
 title: Pizza Dough
 
 description:
@@ -56,3 +53,7 @@ directions:
   - Assemble pizza.
   - Bake uncovered for 30 minutes, then covered with aluminum foid for 15
     minutes at 425 degrees.
+
+tags:
+  - dinner
+  - pizza
