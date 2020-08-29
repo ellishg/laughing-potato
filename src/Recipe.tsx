@@ -1,13 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, ButtonGroup, Card, Image, ListGroup, ToggleButton } from 'react-bootstrap';
-import YAML from 'yaml';
 import Loading from './Loading';
-import IngredientType from './types/IngredientType';
-import RecipeType from './types/RecipeType';
+
+const toNearestFraction = (x: number) => {
+  const epsilon = 0.001;
+  const whole = Math.trunc(x + epsilon);
+  const part = x - whole;
+  const fraction = (part < (1 / 8) / 2) ? null
+    : (part < 1 / 8 + (1 / 4 - 1 / 8) / 2) ? '1/8'
+      : (part < 1 / 4 + (1 / 3 - 1 / 4) / 2) ? '1/4'
+        : (part < 1 / 3 + (3 / 8 - 1 / 3) / 2) ? '1/3'
+          : (part < 3 / 8 + (1 / 2 - 3 / 8) / 2) ? '3/8'
+            : (part < 1 / 2 + (5 / 8 - 1 / 2) / 2) ? '1/2'
+              : (part < 5 / 8 + (2 / 3 - 5 / 8) / 2) ? '5/8'
+                : (part < 2 / 3 + (3 / 4 - 2 / 3) / 2) ? '2/3'
+                  : (part < 3 / 4 + (7 / 8 - 3 / 4) / 2) ? '3/4'
+                    : '7/8';
+  return whole === 0 ? (fraction ? fraction : '0')
+    : `${whole}` + (fraction ? ` ${fraction}` : '');
+};
+
+const ingredientAmountToString = (ingredient: any, useMetricUnits: boolean) => {
+  const unitConversions = require('./unit-conversions');
+  const unitToAbbreviation: Map<string, string> = new Map([
+    ['grams', 'g'],
+    ['tablespoons', 'tbsp.'],
+    ['teaspoons', 'tsp.'],
+    ['ounces', 'oz'],
+  ]);
+
+  if (!ingredient.unit) {
+    return toNearestFraction(ingredient.amount);
+  } else {
+    var amount = ingredient.amount;
+    var unit = ingredient.unit;
+    if (ingredient.name in unitConversions) {
+      const { cups, grams } = unitConversions[ingredient.name];
+      if (useMetricUnits && unit === 'cups') {
+        amount = amount * grams / cups;
+        unit = 'grams';
+      } else if (!useMetricUnits && unit === 'grams') {
+        amount = amount * cups / grams;
+        unit = 'cups';
+      }
+    }
+    return `${toNearestFraction(amount)} ${unitToAbbreviation.get(unit) || unit}`;
+  }
+}
 
 const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
-  const [recipe, setRecipe] = useState<RecipeType>();
-  const [unitConversions, setUnitConversions] = useState<any>();
+  const [recipe, setRecipe] = useState<any>();
   const [useMetricUnits, setUseMetricUnits] = useState<boolean>(() =>
     localStorage.getItem('useMetricUnit') === true.toString()
   );
@@ -20,26 +62,16 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
   }, [useMetricUnits]);
 
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + '/recipes/' + recipeName)
+    fetch(process.env.PUBLIC_URL + '/recipe-data/' + recipeName + '.json')
       .then(response => response.text())
-      .then(data => {
-        const recipe = RecipeType.get(YAML.parse(data));
-        if (recipe) {
-          setRecipe(recipe)
-        } else {
-          throw new Error("Unable to parse YAML.");
-        }
-      })
+      .then(data => setRecipe(JSON.parse(data)))
       .catch(error => setErrorMessage(error.message));
-    fetch(process.env.PUBLIC_URL + '/unit-conversions.yaml')
-      .then(response => response.text())
-      .then(data => setUnitConversions(YAML.parse(data)));
   }, [recipeName]);
 
   return (
     errorMessage ? (
       <Alert variant='danger'>Could not find recipe for '{recipeName}'</Alert>
-    ) : recipe && unitConversions ? (
+    ) : recipe ? (
       <div>
         <Card.Title as="h1">
           {recipe.title}
@@ -73,9 +105,9 @@ const Recipe: React.FC<{recipeName: string}> = ({recipeName}) => {
         {/* TODO: Set max width. */}
         <Card.Body>
           <ListGroup>
-            {recipe.ingredients.map((ingredient: IngredientType, index: number) =>
+            {recipe.ingredients.map((ingredient: any, index: number) =>
               <ListGroup.Item key={index}>
-                {ingredient.getAmount(unitConversions, useMetricUnits)} {ingredient.name}
+                {ingredientAmountToString(ingredient, useMetricUnits)} {ingredient.name}
               </ListGroup.Item>
               )}
           </ListGroup>

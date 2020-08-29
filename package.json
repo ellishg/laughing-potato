@@ -21,13 +21,12 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "typescript": "^3.9.7",
-    "yaml": "^1.10.0"
+    "typescript": "^3.9.7"
   },
   "scripts": {
-    "prestart": "python urban-bassoon/build.py urban-bassoon/build",
+    "prestart": "python urban-bassoon/build.py public/recipe-data",
     "start": "react-scripts start",
-    "prebuild": "python urban-bassoon/build.py urban-bassoon/build",
+    "prebuild": "python urban-bassoon/build.py public/recipe-data",
     "build": "react-scripts build",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",

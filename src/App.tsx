@@ -9,7 +9,7 @@ const Home: React.FC = () => {
   const [recipeList, setRecipeList] = useState<any[]>();
 
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + '/recipe-list.json')
+    fetch(process.env.PUBLIC_URL + '/recipe-data/recipe-list.json')
       .then(response => response.text())
       .then(data => setRecipeList(JSON.parse(data)));
   }, []);
