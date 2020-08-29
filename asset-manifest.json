@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.js": "/laughing-potato/static/js/main.9298b9dc.chunk.js",
-    "main.js.map": "/laughing-potato/static/js/main.9298b9dc.chunk.js.map",
+    "main.js": "/laughing-potato/static/js/main.89c9a25c.chunk.js",
+    "main.js.map": "/laughing-potato/static/js/main.89c9a25c.chunk.js.map",
     "runtime-main.js": "/laughing-potato/static/js/runtime-main.4f1867d4.js",
     "runtime-main.js.map": "/laughing-potato/static/js/runtime-main.4f1867d4.js.map",
     "static/css/2.11829350.chunk.css": "/laughing-potato/static/css/2.11829350.chunk.css",
-    "static/js/2.f92fbea6.chunk.js": "/laughing-potato/static/js/2.f92fbea6.chunk.js",
-    "static/js/2.f92fbea6.chunk.js.map": "/laughing-potato/static/js/2.f92fbea6.chunk.js.map",
+    "static/js/2.9cd35787.chunk.js": "/laughing-potato/static/js/2.9cd35787.chunk.js",
+    "static/js/2.9cd35787.chunk.js.map": "/laughing-potato/static/js/2.9cd35787.chunk.js.map",
     "index.html": "/laughing-potato/index.html",
-    "precache-manifest.d3d027489ec2fe0cb3e1375bf215ff3b.js": "/laughing-potato/precache-manifest.d3d027489ec2fe0cb3e1375bf215ff3b.js",
+    "precache-manifest.5f5223d04165785b2db700ca56208584.js": "/laughing-potato/precache-manifest.5f5223d04165785b2db700ca56208584.js",
     "service-worker.js": "/laughing-potato/service-worker.js",
     "static/css/2.11829350.chunk.css.map": "/laughing-potato/static/css/2.11829350.chunk.css.map",
-    "static/js/2.f92fbea6.chunk.js.LICENSE.txt": "/laughing-potato/static/js/2.f92fbea6.chunk.js.LICENSE.txt"
+    "static/js/2.9cd35787.chunk.js.LICENSE.txt": "/laughing-potato/static/js/2.9cd35787.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4f1867d4.js",
     "static/css/2.11829350.chunk.css",
-    "static/js/2.f92fbea6.chunk.js",
-    "static/js/main.9298b9dc.chunk.js"
+    "static/js/2.9cd35787.chunk.js",
+    "static/js/main.89c9a25c.chunk.js"
   ]
 }
