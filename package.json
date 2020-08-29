@@ -25,9 +25,9 @@
     "yaml": "^1.10.0"
   },
   "scripts": {
-    "prestart": "urban-bassoon ./urban-bassoon/recipes public/",
+    "prestart": "python urban-bassoon/build.py urban-bassoon/build",
     "start": "react-scripts start",
-    "prebuild": "urban-bassoon ./urban-bassoon/recipes public/",
+    "prebuild": "python urban-bassoon/build.py urban-bassoon/build",
     "build": "react-scripts build",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
@@ -50,7 +50,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^3.1.0",
-    "urban-bassoon": "file:urban-bassoon"
+    "gh-pages": "^3.1.0"
   }
 }
