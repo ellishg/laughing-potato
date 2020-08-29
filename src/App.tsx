@@ -89,7 +89,18 @@ const Home: React.FC = () => {
 }
 
 const BadURL: React.FC = () => {
-  return <Alert variant="danger">Invalid URL.</Alert>
+  return (
+    <Alert variant="danger">
+      <Alert.Heading>Invalid URL.</Alert.Heading>
+      <p>
+        Found a bug? Report it at{' '}
+        <Alert.Link href="https://github.com/ellishg/laughing-potato/issues">
+          https://github.com/ellishg/laughing-potato/issues
+        </Alert.Link>
+        .
+      </p>
+    </Alert>
+  )
 }
 
 const getRecipe = (props: any) => <Recipe recipeName={props.match.params.recipeName} />

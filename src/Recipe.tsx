@@ -57,6 +57,21 @@ const ingredientAmountToString = (ingredient: any, useMetricUnits: boolean) => {
   }
 }
 
+const RecipeError: React.FC<{ recipeName: string }> = ({ recipeName }) => {
+  return (
+    <Alert variant="danger">
+      <Alert.Heading>Could not find recipe '{recipeName}'</Alert.Heading>
+      <p>
+        Found a bug? Report it at{' '}
+        <Alert.Link href="https://github.com/ellishg/laughing-potato/issues">
+          https://github.com/ellishg/laughing-potato/issues
+        </Alert.Link>
+        .
+      </p>
+    </Alert>
+  )
+}
+
 const Recipe: React.FC<{ recipeName: string }> = ({ recipeName }) => {
   const [recipe, setRecipe] = useState<any>()
   const [useMetricUnits, setUseMetricUnits] = useState<boolean>(
@@ -80,7 +95,7 @@ const Recipe: React.FC<{ recipeName: string }> = ({ recipeName }) => {
   }, [recipeName])
 
   return errorMessage ? (
-    <Alert variant="danger">Could not find recipe for '{recipeName}'</Alert>
+    <RecipeError recipeName={recipeName} />
   ) : recipe ? (
     <div>
       <Card.Title as="h1">
