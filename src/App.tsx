@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, Card, ListGroup, Nav } from 'react-bootstrap'
+import { Alert, Card, ListGroup, Nav, Form } from 'react-bootstrap'
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 import About from './About'
 import Loading from './Loading'
 import Recipe from './Recipe'
+import FuzzySet from 'fuzzyset'
 
 const Home: React.FC = () => {
   const [recipeList, setRecipeList] = useState<any[]>()
+  const [filteredRecipeIndices, setFilteredRecipeIndices] = useState<number[]>()
+  const [searchBarText, setSearchBarText] = useState<string>('')
+  const [fuzzyRecipeTags, setFuzzyRecipeTags] = useState<FuzzySet>()
+  const [tagToRecipeIndices, setTagToRecipeIndices] = useState<Map<string, number[]>>()
 
   useEffect(() => {
     fetch(process.env.PUBLIC_URL + '/recipe-data/recipe-list.json')
@@ -14,16 +19,65 @@ const Home: React.FC = () => {
       .then((data) => setRecipeList(JSON.parse(data)))
   }, [])
 
+  useEffect(() => {
+    if (recipeList) {
+      const recipeTags = recipeList.map((recipe: any) => recipe.tags.concat([recipe.title]))
+      setTagToRecipeIndices(
+        recipeTags.reduce((bucket: Map<string, number[]>, tags: string[], recipeIndex: number) => {
+          tags.forEach((tag: string) =>
+            bucket.set(tag, bucket.get(tag)?.concat([recipeIndex]) || [recipeIndex])
+          )
+          return bucket
+        }, new Map())
+      )
+      setFuzzyRecipeTags(FuzzySet(recipeTags.flat()))
+    }
+  }, [recipeList])
+
+  useEffect(() => {
+    if (searchBarText) {
+      const matchingTags =
+        fuzzyRecipeTags?.get(searchBarText)?.flatMap(([_, tag]: [number, string]) => tag) || []
+      const indices = matchingTags
+        .flatMap((tag: string) => tagToRecipeIndices?.get(tag) || [])
+        // Remove duplicates, but preserve order.
+        .reverse()
+        .filter(
+          (recipeIndex: number, arrayIndex: number, array: number[]) =>
+            array.lastIndexOf(recipeIndex) === arrayIndex
+        )
+        .reverse()
+      setFilteredRecipeIndices(indices)
+    } else {
+      setFilteredRecipeIndices(recipeList?.map((_: any, index: number) => index) || [])
+    }
+  }, [recipeList, searchBarText, fuzzyRecipeTags, tagToRecipeIndices])
+
+  const handleSearchBarChange = (event: any) => {
+    event.preventDefault()
+    setSearchBarText(event.target.value)
+  }
+
+  const handleSearchBarSubmit = (event: any) => {
+    event.preventDefault()
+  }
+
   // TODO: Handle different categories.
-  // TODO: Add search bar to filter by tags using a fuzzy search.
-  return recipeList ? (
+  return filteredRecipeIndices ? (
     <div>
       <Card.Title>Recipe List</Card.Title>
+
+      <Form onSubmit={handleSearchBarSubmit}>
+        <Form.Group>
+          <Form.Control placeholder={'Search for a recipe!'} onChange={handleSearchBarChange} />
+        </Form.Group>
+      </Form>
+
       <ListGroup>
-        {recipeList.map((recipeItem: any, index: number) => (
+        {filteredRecipeIndices.map((index: number) => (
           <ListGroup.Item key={index}>
-            <Link to={process.env.PUBLIC_URL + '/recipe/' + recipeItem.filename}>
-              {recipeItem.title}
+            <Link to={process.env.PUBLIC_URL + '/recipe/' + recipeList![index].filename}>
+              {recipeList![index].title}
             </Link>
           </ListGroup.Item>
         ))}
