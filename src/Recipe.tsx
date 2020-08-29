@@ -60,7 +60,7 @@ const ingredientAmountToString = (ingredient: any, useMetricUnits: boolean) => {
 const RecipeError: React.FC<{ recipeName: string }> = ({ recipeName }) => {
   return (
     <Alert variant="danger">
-      <Alert.Heading>Could not find recipe '{recipeName}'</Alert.Heading>
+      <Alert.Heading>Could not find recipe '{recipeName}'.</Alert.Heading>
       <p>
         Found a bug? Report it at{' '}
         <Alert.Link href="https://github.com/ellishg/laughing-potato/issues">
