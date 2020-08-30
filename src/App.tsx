@@ -65,8 +65,6 @@ const Home: React.FC = () => {
   // TODO: Handle different categories.
   return filteredRecipeIndices ? (
     <div>
-      <Card.Title>Recipe List</Card.Title>
-
       <Form onSubmit={handleSearchBarSubmit}>
         <Form.Group>
           <Form.Control placeholder={'Search for a recipe!'} onChange={handleSearchBarChange} />
