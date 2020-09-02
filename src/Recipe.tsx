@@ -151,6 +151,9 @@ const Recipe: React.FC<{ recipeName: string }> = ({ recipeName }) => {
           ))}
         </ol>
       </Card.Body>
+      {recipe.authors && (
+        <Card.Footer>Special thanks to {recipe.authors} for this recipe.</Card.Footer>
+      )}
     </div>
   ) : (
     <Loading />
