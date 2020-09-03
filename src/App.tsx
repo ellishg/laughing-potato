@@ -21,7 +21,9 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     if (recipeList) {
-      const recipeTags = recipeList.map((recipe: any) => recipe.tags.concat([recipe.title]))
+      const recipeTags = recipeList.map((recipe: any) =>
+        recipe.tags.concat(recipe.title.split(' ')).concat([recipe.title])
+      )
       setTagToRecipeIndices(
         recipeTags.reduce((bucket: Map<string, number[]>, tags: string[], recipeIndex: number) => {
           tags.forEach((tag: string) =>
