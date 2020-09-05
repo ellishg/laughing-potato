@@ -151,9 +151,18 @@ const Recipe: React.FC<{ recipeName: string }> = ({ recipeName }) => {
           ))}
         </ol>
       </Card.Body>
-      {recipe.authors && (
-        <Card.Footer>Special thanks to {recipe.authors} for this recipe.</Card.Footer>
-      )}
+      <Card.Footer>
+        {recipe.authors && <p>Special thanks to {recipe.authors} for this recipe.</p>}
+        Found a typo? Please submit a pull request for{' '}
+        <Card.Link
+          href={
+            'https://github.com/ellishg/urban-bassoon/blob/main/recipes/' + recipeName + '.yaml'
+          }
+        >
+          {'https://github.com/ellishg/urban-bassoon/blob/main/recipes/' + recipeName + '.yaml'}
+        </Card.Link>
+        .
+      </Card.Footer>
     </div>
   ) : (
     <Loading />
