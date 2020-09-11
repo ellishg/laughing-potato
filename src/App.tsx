@@ -118,7 +118,7 @@ const App: React.FC = () => {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link as={Link} to={process.env.PUBLIC_URL + '/create'}>
-                Create Your Own Recipe
+                Create Recipe
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
