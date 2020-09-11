@@ -97,7 +97,7 @@ const Recipe: React.FC<{ recipeName: string }> = ({ recipeName }) => {
   return errorMessage ? (
     <RecipeError recipeName={recipeName} />
   ) : recipe ? (
-    <div>
+    <>
       <Card.Title as="h1">
         {recipe.title}
         <ButtonGroup toggle={true}>
@@ -163,7 +163,7 @@ const Recipe: React.FC<{ recipeName: string }> = ({ recipeName }) => {
         </Card.Link>
         .
       </Card.Footer>
-    </div>
+    </>
   ) : (
     <Loading />
   )

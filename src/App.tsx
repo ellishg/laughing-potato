@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Alert, Card, ListGroup, Nav, Form } from 'react-bootstrap'
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 import About from './About'
+import CreateRecipe from './CreateRecipe'
 import Loading from './Loading'
 import Recipe from './Recipe'
 import FuzzySet from 'fuzzyset'
@@ -21,14 +22,14 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     if (recipeList) {
-      const recipeTags = recipeList.map((recipe: any) =>
-        recipe.tags.concat(recipe.title.split(' ')).concat([recipe.title])
-      )
+      const recipeTags = recipeList.map((recipe: any) => [
+        ...recipe.tags,
+        ...recipe.title.split(' '),
+        recipe.title,
+      ])
       setTagToRecipeIndices(
         recipeTags.reduce((bucket: Map<string, number[]>, tags: string[], recipeIndex: number) => {
-          tags.forEach((tag: string) =>
-            bucket.set(tag, bucket.get(tag)?.concat([recipeIndex]) || [recipeIndex])
-          )
+          tags.forEach((tag: string) => bucket.set(tag, [...(bucket.get(tag) || []), recipeIndex]))
           return bucket
         }, new Map())
       )
@@ -56,7 +57,6 @@ const Home: React.FC = () => {
   }, [recipeList, searchBarText, fuzzyRecipeTags, tagToRecipeIndices])
 
   const handleSearchBarChange = (event: any) => {
-    event.preventDefault()
     setSearchBarText(event.target.value)
   }
 
@@ -66,7 +66,7 @@ const Home: React.FC = () => {
 
   // TODO: Handle different categories.
   return filteredRecipeIndices ? (
-    <div>
+    <>
       <Form onSubmit={handleSearchBarSubmit}>
         <Form.Group>
           <Form.Control placeholder={'Search for a recipe!'} onChange={handleSearchBarChange} />
@@ -82,7 +82,7 @@ const Home: React.FC = () => {
           </ListGroup.Item>
         ))}
       </ListGroup>
-    </div>
+    </>
   ) : (
     <Loading />
   )
@@ -117,6 +117,11 @@ const App: React.FC = () => {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
+              <Nav.Link as={Link} to={process.env.PUBLIC_URL + '/create'}>
+                Create Your Own Recipe
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
               <Nav.Link as={Link} to={process.env.PUBLIC_URL + '/about'}>
                 About
               </Nav.Link>
@@ -127,6 +132,11 @@ const App: React.FC = () => {
           <Switch>
             <Route path={process.env.PUBLIC_URL + '/'} exact={true} component={Home} />
             <Route path={process.env.PUBLIC_URL + '/about'} exact={true} component={About} />
+            <Route
+              path={process.env.PUBLIC_URL + '/create'}
+              exact={true}
+              component={CreateRecipe}
+            />
             <Route
               path={process.env.PUBLIC_URL + '/recipe/:recipeName'}
               exact={true}
