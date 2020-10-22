@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/laughing-potato/static/js/main.b823d989.chunk.js",
-    "main.js.map": "/laughing-potato/static/js/main.b823d989.chunk.js.map",
+    "main.js": "/laughing-potato/static/js/main.e1501a73.chunk.js",
+    "main.js.map": "/laughing-potato/static/js/main.e1501a73.chunk.js.map",
     "runtime-main.js": "/laughing-potato/static/js/runtime-main.4f1867d4.js",
     "runtime-main.js.map": "/laughing-potato/static/js/runtime-main.4f1867d4.js.map",
     "static/css/2.11829350.chunk.css": "/laughing-potato/static/css/2.11829350.chunk.css",
     "static/js/2.1d3dd77e.chunk.js": "/laughing-potato/static/js/2.1d3dd77e.chunk.js",
     "static/js/2.1d3dd77e.chunk.js.map": "/laughing-potato/static/js/2.1d3dd77e.chunk.js.map",
     "index.html": "/laughing-potato/index.html",
-    "precache-manifest.13fa2f87211f5ccdc60298ba9c41d7e9.js": "/laughing-potato/precache-manifest.13fa2f87211f5ccdc60298ba9c41d7e9.js",
+    "precache-manifest.8bbc281438aedaa5c5fa2b8292cb9f12.js": "/laughing-potato/precache-manifest.8bbc281438aedaa5c5fa2b8292cb9f12.js",
     "service-worker.js": "/laughing-potato/service-worker.js",
     "static/css/2.11829350.chunk.css.map": "/laughing-potato/static/css/2.11829350.chunk.css.map",
     "static/js/2.1d3dd77e.chunk.js.LICENSE.txt": "/laughing-potato/static/js/2.1d3dd77e.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.4f1867d4.js",
     "static/css/2.11829350.chunk.css",
     "static/js/2.1d3dd77e.chunk.js",
-    "static/js/main.b823d989.chunk.js"
+    "static/js/main.e1501a73.chunk.js"
   ]
 }
