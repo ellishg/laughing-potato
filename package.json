@@ -27,9 +27,9 @@
     "yaml": "^1.10.0"
   },
   "scripts": {
-    "prestart": "python urban-bassoon/build.py public/recipe-data",
+    "prestart": "urban-bassoon/build.py public/recipe-data",
     "start": "react-scripts start",
-    "prebuild": "python urban-bassoon/build.py public/recipe-data",
+    "prebuild": "urban-bassoon/build.py public/recipe-data",
     "build": "react-scripts build",
     "predeploy": "yarn clean && yarn build",
     "deploy": "gh-pages -d build",
