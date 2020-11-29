@@ -98,27 +98,25 @@ const Recipe: React.FC<{ recipeName: string }> = ({ recipeName }) => {
     <RecipeError recipeName={recipeName} />
   ) : recipe ? (
     <>
-      <Card.Title as="h1">
-        {recipe.title}
-        <ButtonGroup toggle={true}>
-          <ToggleButton
-            type="radio"
-            value={useMetricUnits.toString()}
-            checked={useMetricUnits}
-            onChange={setMetric}
-          >
-            Metric
-          </ToggleButton>
-          <ToggleButton
-            type="radio"
-            value={(!useMetricUnits).toString()}
-            checked={!useMetricUnits}
-            onChange={setImperial}
-          >
-            Imperial
-          </ToggleButton>
-        </ButtonGroup>
-      </Card.Title>
+      <Card.Title as="h1">{recipe.title}</Card.Title>
+      <ButtonGroup toggle={true}>
+        <ToggleButton
+          type="radio"
+          value={useMetricUnits.toString()}
+          checked={useMetricUnits}
+          onChange={setMetric}
+        >
+          Metric
+        </ToggleButton>
+        <ToggleButton
+          type="radio"
+          value={(!useMetricUnits).toString()}
+          checked={!useMetricUnits}
+          onChange={setImperial}
+        >
+          Imperial
+        </ToggleButton>
+      </ButtonGroup>
       <Card.Text>{recipe.description}</Card.Text>
 
       {/* TODO: Use better style, click to enlarge. */}
