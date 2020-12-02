@@ -13,4 +13,8 @@ jobs:
           git submodule foreach 'git merge origin/main'
           git add -v .
           git commit -m "Bump submodule via GitHub Action"
-          git push
+      - name: Push 🚀
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
