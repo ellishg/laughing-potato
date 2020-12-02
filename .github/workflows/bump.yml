@@ -1,0 +1,7 @@
+name: Bump Recipes
+"on": [workflow_dispatch]
+jobs:
+  bump:
+    steps:
+      - name: Bump Git Submodules
+        uses: domdere/git-submodule-action@0.0.1
