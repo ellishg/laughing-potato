@@ -1,7 +1,10 @@
 # laughing-potato (working title)
-## [ellishg.github.io/laughing-potato](https://ellishg.github.io/laughing-potato)
-A simple website to view recipes.
 
+![Build and Deploy](https://github.com/ellishg/laughing-potato/workflows/Build%20and%20Deploy/badge.svg)
+
+## [ellishg.github.io/laughing-potato](https://ellishg.github.io/laughing-potato)
+
+A simple website to view recipes.
 
 ## Try it yourself
 ```bash
