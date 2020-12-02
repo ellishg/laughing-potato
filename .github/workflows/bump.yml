@@ -9,7 +9,7 @@ jobs:
         with:
           submodules: true
       - run: |
-          pushd urban-bassoon && git pull && popd
+          pushd urban-bassoon && git pull --rebase && popd
           git add -v urban-bassoon
           git commit -m "Bump urban-bassoon submodule via GitHub Action"
           git push
