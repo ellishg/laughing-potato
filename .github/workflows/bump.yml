@@ -1,11 +1,16 @@
 name: Bump Recipes
 "on": [workflow_dispatch]
 jobs:
-  bump:
+  bump-recipes:
     runs-on: ubuntu-latest
     steps:
-      - run: git config --global user.name "GitHub Submodules Action"
-      - run: pushd urban-bassoon && git pull && popd
-      - run: git add -v urban-bassoon
-      - run: git commit -m "Bump urban-bassoon submodule"
-      - run: git push
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+        with:
+          submodules: true
+          token: ${{secrets.PAT}}
+      - run: |
+          pushd urban-bassoon && git pull && popd
+          git add -v urban-bassoon
+          git commit -m "Bump urban-bassoon submodule via GitHub Action"
+          git push
