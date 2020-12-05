@@ -4,7 +4,7 @@ name: Lint
     branches:
       - main
 jobs:
-  build-and-deploy:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
