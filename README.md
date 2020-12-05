@@ -1,6 +1,8 @@
 # laughing-potato (working title)
 
-![Build and Deploy](https://github.com/ellishg/laughing-potato/workflows/Build%20and%20Deploy/badge.svg)
+![Lint](https://github.com/ellishg/laughing-potato/workflows/Lint/badge.svg)
+![Test](https://github.com/ellishg/laughing-potato/workflows/Test/badge.svg)
+![Deploy](https://github.com/ellishg/laughing-potato/workflows/Deploy/badge.svg)
 
 ## [ellishg.github.io/laughing-potato](https://ellishg.github.io/laughing-potato)
 
