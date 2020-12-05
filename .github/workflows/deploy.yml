@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Deploy
 "on": [workflow_dispatch]
 jobs:
   build-and-deploy:
@@ -9,12 +9,10 @@ jobs:
         with:
           persist-credentials: false
           submodules: true
-
-      - name: Install and Build 🔧
-        run: |
-          yarn install
-          yarn build
-
+      - name: Install ⚙️
+        run: yarn install
+      - name: Build 🔧
+        run: yarn build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3
         with:

@@ -6,13 +6,17 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
-      - run: |
+      - name: Update
+        run: |
           git submodule init
           git submodule update
           git submodule foreach 'git fetch --all -p'
           git submodule foreach 'git merge origin/main'
+      - name: Commit
+        run: |
           git add -v .
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git commit -m "Bump submodule via GitHub Action"
-          git push
+      - name: Push
+        run: git push

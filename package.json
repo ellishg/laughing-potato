@@ -33,7 +33,7 @@
     "build": "react-scripts build",
     "predeploy": "yarn clean && yarn build",
     "deploy": "gh-pages -d build",
-    "lint": "tslint -c tslint.json src/**/*.{ts,tsx} --fix --format verbose",
+    "lint": "tslint -c tslint.json src/**/*.{ts,tsx} --format verbose",
     "clean": "rm -rf build public/recipe-data",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
