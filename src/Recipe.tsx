@@ -150,7 +150,7 @@ const Recipe: React.FC<{ recipeName: string }> = ({ recipeName }) => {
         </ol>
       </Card.Body>
       <Card.Footer>
-        {recipe.authors && <p>Special thanks to {recipe.authors} for this recipe.</p>}
+        {recipe.authors && <p>Special thanks to {recipe.authors.join(', ')} for this recipe.</p>}
         Found a typo? Please submit a pull request for{' '}
         <Card.Link
           href={
