@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ad802faf43e1f727f2021c3cf590333b",
+    "revision": "cc028cc45ad6d6e7cadba03d5d57f96c",
     "url": "/laughing-potato/index.html"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/laughing-potato/static/js/2.1d3dd77e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ca04e965cd86a82efc5d",
-    "url": "/laughing-potato/static/js/main.72ca919f.chunk.js"
+    "revision": "9a58dd1452e224cab0f0",
+    "url": "/laughing-potato/static/js/main.1e09c5ac.chunk.js"
   },
   {
     "revision": "89b5595ebff2a14a0b3d",
