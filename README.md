@@ -9,6 +9,11 @@
 A simple website to view recipes.
 
 ## Try it yourself
+### Prerequisites
+```bash
+brew install yarn node
+```
+
 ```bash
 git clone --recurse-submodules git@github.com:ellishg/laughing-potato.git
 cd laughing-potato
