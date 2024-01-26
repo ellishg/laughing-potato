@@ -12,6 +12,7 @@ A simple website to view recipes.
 ### Prerequisites
 ```bash
 brew install yarn node
+pip3 install pyyaml
 ```
 
 ```bash
