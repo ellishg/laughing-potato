@@ -18,6 +18,8 @@ pip3 install pyyaml
 ```bash
 git clone --recurse-submodules git@github.com:ellishg/laughing-potato.git
 cd laughing-potato
+# If you have already cloned you may run the following.
+git submodule update --init --recursive
 yarn install
 yarn start
 ```
