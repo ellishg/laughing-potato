@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Card, Button, Overlay, Tooltip, Form } from 'react-bootstrap'
+import { Card, Button, Overlay, Tooltip, Form, Row, Col } from 'react-bootstrap'
 import YAML from 'yaml'
 import stringMath from 'string-math'
 
@@ -40,7 +40,7 @@ const IngredientsForm: React.FC<{
   updateIngredients: React.Dispatch<React.SetStateAction<any[]>>
 }> = ({ ingredients, updateIngredients }) => {
   const onIngredientAmountChange = (event: any) => {
-    const value = stringMath(event.target.value, () => {})
+    const value = stringMath(event.target.value, () => undefined)
     const index = Number(event.target.getAttribute('data-tag'))
     updateIngredients((oldList: any[]) => [
       ...oldList.slice(0, index),
@@ -79,38 +79,40 @@ const IngredientsForm: React.FC<{
       <Card.Header>Ingredients</Card.Header>
       <Card.Body>
         {ingredients.map((ingredient: any, index: number) => (
-          <Form.Row key={index}>
-            <Form.Group>
-              <Form.Label>Amount</Form.Label>
-              <Form.Control
-                data-tag={index}
-                placeholder="Enter a number."
-                value={ingredient.amount}
-                onChange={onIngredientAmountChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Unit</Form.Label>
-              <Form.Control
-                data-tag={index}
-                placeholder='e.g., "grams", "cups"'
-                value={ingredient.unit}
-                onChange={onIngredientUnitChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Ingredient</Form.Label>
-              <Form.Control
-                data-tag={index}
-                placeholder="Enter a Name."
-                value={ingredient.name}
-                onChange={onIngredientNameChange}
-              />
-            </Form.Group>
+          <Form key={index}>
+            <Row>
+              <Form.Group as={Col}>
+                <Form.Label>Amount</Form.Label>
+                <Form.Control
+                  data-tag={index}
+                  placeholder="Enter a number."
+                  value={ingredient.amount}
+                  onChange={onIngredientAmountChange}
+                />
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label>Unit</Form.Label>
+                <Form.Control
+                  data-tag={index}
+                  placeholder='e.g., "grams", "cups"'
+                  value={ingredient.unit}
+                  onChange={onIngredientUnitChange}
+                />
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label>Ingredient</Form.Label>
+                <Form.Control
+                  data-tag={index}
+                  placeholder="Enter a Name."
+                  value={ingredient.name}
+                  onChange={onIngredientNameChange}
+                />
+              </Form.Group>
+            </Row>
             <Button data-tag={index} onClick={onRemoveIngredients}>
               Remove
             </Button>
-          </Form.Row>
+          </Form>
         ))}
         <Button onClick={onAppendIngredient}>Add Ingredient</Button>
       </Card.Body>

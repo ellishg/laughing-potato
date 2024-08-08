@@ -74,6 +74,7 @@ const RecipeError: React.FC<{ recipeName: string }> = ({ recipeName }) => {
 
 const Recipe: React.FC<{ recipeName: string }> = ({ recipeName }) => {
   const [recipe, setRecipe] = useState<any>()
+  // FIXME: Dev doesn't think this needs to be this complicated.
   const [useMetricUnits, setUseMetricUnits] = useState<boolean>(
     () => localStorage.getItem('useMetricUnit') === true.toString()
   )
@@ -99,8 +100,9 @@ const Recipe: React.FC<{ recipeName: string }> = ({ recipeName }) => {
   ) : recipe ? (
     <>
       <Card.Title as="h1">{recipe.title}</Card.Title>
-      <ButtonGroup toggle={true}>
+      <ButtonGroup>
         <ToggleButton
+          id="set-metric"
           type="radio"
           value={useMetricUnits.toString()}
           checked={useMetricUnits}
@@ -109,6 +111,7 @@ const Recipe: React.FC<{ recipeName: string }> = ({ recipeName }) => {
           Metric
         </ToggleButton>
         <ToggleButton
+          id="set-imperial"
           type="radio"
           value={(!useMetricUnits).toString()}
           checked={!useMetricUnits}
