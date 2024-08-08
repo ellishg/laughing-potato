@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Card, Button, Overlay, Tooltip, Form } from 'react-bootstrap'
 import YAML from 'yaml'
+import stringMath from 'string-math'
 
 const YamlFile: React.FC<{ recipe: any }> = ({ recipe }) => {
   const recipeString = YAML.stringify(recipe)
@@ -39,7 +40,7 @@ const IngredientsForm: React.FC<{
   updateIngredients: React.Dispatch<React.SetStateAction<any[]>>
 }> = ({ ingredients, updateIngredients }) => {
   const onIngredientAmountChange = (event: any) => {
-    const value = event.target.value
+    const value = stringMath(event.target.value, () => {})
     const index = Number(event.target.getAttribute('data-tag'))
     updateIngredients((oldList: any[]) => [
       ...oldList.slice(0, index),
