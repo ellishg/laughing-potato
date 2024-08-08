@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Alert, Card, ListGroup, Nav, Form } from 'react-bootstrap'
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import About from './About'
 import CreateRecipe from './CreateRecipe'
 import Loading from './Loading'
@@ -103,8 +103,6 @@ const BadURL: React.FC = () => {
   )
 }
 
-const getRecipe = (props: any) => <Recipe recipeName={props.match.params.recipeName} />
-
 const App: React.FC = () => {
   return (
     <BrowserRouter>
@@ -129,21 +127,13 @@ const App: React.FC = () => {
           </Nav>
         </Card.Header>
         <Card.Body>
-          <Switch>
-            <Route path={process.env.PUBLIC_URL + '/'} exact={true} component={Home} />
-            <Route path={process.env.PUBLIC_URL + '/about'} exact={true} component={About} />
-            <Route
-              path={process.env.PUBLIC_URL + '/create'}
-              exact={true}
-              component={CreateRecipe}
-            />
-            <Route
-              path={process.env.PUBLIC_URL + '/recipe/:recipeName'}
-              exact={true}
-              component={getRecipe}
-            />
-            <Route component={BadURL} />
-          </Switch>
+          <Routes>
+            <Route path={process.env.PUBLIC_URL + '/'} element={<Home />} />
+            <Route path={process.env.PUBLIC_URL + '/about'} element={<About />} />
+            <Route path={process.env.PUBLIC_URL + '/create'} element={<CreateRecipe />} />
+            <Route path={process.env.PUBLIC_URL + '/recipe/:recipeName'} element={<Recipe />} />
+            <Route path='/*' element={<BadURL />} />
+          </Routes>
         </Card.Body>
       </Card>
     </BrowserRouter>

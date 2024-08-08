@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Alert, ButtonGroup, Card, Image, ListGroup, ToggleButton } from 'react-bootstrap'
 import Loading from './Loading'
+import { useParams } from 'react-router-dom'
 
 const toNearestFraction = (x: number) => {
   const epsilon = 0.001
@@ -57,7 +58,7 @@ const ingredientAmountToString = (ingredient: any, useMetricUnits: boolean) => {
   }
 }
 
-const RecipeError: React.FC<{ recipeName: string }> = ({ recipeName }) => {
+const RecipeError: React.FC<{ recipeName: string | undefined }> = ({ recipeName }) => {
   return (
     <Alert variant="danger">
       <Alert.Heading>Could not find recipe '{recipeName}'.</Alert.Heading>
@@ -72,7 +73,8 @@ const RecipeError: React.FC<{ recipeName: string }> = ({ recipeName }) => {
   )
 }
 
-const Recipe: React.FC<{ recipeName: string }> = ({ recipeName }) => {
+const Recipe: React.FC = () => {
+  const { recipeName } = useParams()
   const [recipe, setRecipe] = useState<any>()
   // FIXME: Dev doesn't think this needs to be this complicated.
   const [useMetricUnits, setUseMetricUnits] = useState<boolean>(
