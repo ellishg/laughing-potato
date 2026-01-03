@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/laughing-potato/static/css/main.d221dc40.css",
-    "main.js": "/laughing-potato/static/js/main.9c726a44.js",
+    "main.css": "/laughing-potato/static/css/main.3982bb5f.css",
+    "main.js": "/laughing-potato/static/js/main.d25e09d6.js",
     "index.html": "/laughing-potato/index.html",
-    "main.d221dc40.css.map": "/laughing-potato/static/css/main.d221dc40.css.map",
-    "main.9c726a44.js.map": "/laughing-potato/static/js/main.9c726a44.js.map"
+    "main.3982bb5f.css.map": "/laughing-potato/static/css/main.3982bb5f.css.map",
+    "main.d25e09d6.js.map": "/laughing-potato/static/js/main.d25e09d6.js.map"
   },
   "entrypoints": [
-    "static/css/main.d221dc40.css",
-    "static/js/main.9c726a44.js"
+    "static/css/main.3982bb5f.css",
+    "static/js/main.d25e09d6.js"
   ]
 }
